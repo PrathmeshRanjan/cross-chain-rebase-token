@@ -15,12 +15,12 @@ import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 import {AccessControl} from "@openzeppelin/contracts/access/AccessControl.sol";
 
 /*
-* @title RebaseToken
-* @author Prathmesh Ranjan
-* @notice This is a cross-chain rebase token that incentivises users to deposit into a vault and gain interest in rewards.
-* @notice The interest rate in the smart contract can only decrease.
-* @notice Each will user will have their own interest rate that will be the global interest rate at the time of depositing.
-*/
+ * @title RebaseToken
+ * @author Prathmesh Ranjan
+ * @notice This is a cross-chain rebase token that incentivises users to deposit into a vault and gain interest in rewards.
+ * @notice The interest rate in the smart contract can only decrease.
+ * @notice Each will user will have their own interest rate that will be the global interest rate at the time of depositing.
+ */
 contract RebaseToken is ERC20, Ownable, AccessControl {
     /////////////////////////
     //// State Variables ////
@@ -79,23 +79,22 @@ contract RebaseToken is ERC20, Ownable, AccessControl {
         return (super.balanceOf(_user) * _calculateUserAccumulatedInterestSinceLastUpdate(_user)) / PRECISION_FACTOR;
     }
 
-    /*
-    * @notice Mints new tokens for a given address. Called when a user either deposits or bridges tokens to this chain.
-    * @param _to The address to mint the tokens to.
-    * @param _value The number of tokens to mint.
-    * @param _userInterestRate The interest rate of the user. This is either the contract interest rate if the user is depositing or the user's interest rate from the source token if the user is bridging.
-    * @dev this function increases the total supply.
-    */
+    /**
+     * @notice Mints new tokens for a given address. Called when a user either deposits or bridges tokens to this chain.
+     * @param _to The address to mint the tokens to.
+     * @param _amount The number of tokens to mint.
+     * @dev this function increases the total supply and sets the user's interest rate to the current global interest rate.
+     */
     function mint(address _to, uint256 _amount) external onlyRole(MINT_AND_BURN_ROLE) {
         _mintAccruedInterest(_to);
         userInterestRate[_to] = interestRate;
         _mint(_to, _amount);
     }
 
-    /*
+    /**
      * @notice Burns tokens from the sender.
      * @param _from The address to burn the tokens from.
-     * @param _value The number of tokens to be burned
+     * @param _amount The number of tokens to be burned
      * @dev This function decreases the total supply.
      */
     function burn(address _from, uint256 _amount) external onlyRole(MINT_AND_BURN_ROLE) {
