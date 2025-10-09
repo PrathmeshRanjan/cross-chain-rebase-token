@@ -22,7 +22,7 @@ contract RebaseTokenTest is Test {
         vm.deal(owner, 1000e18);
         // Fund vault with extra ETH to cover interest payments for testing
         // In reality, this would come from yield-generating strategies
-        (bool success, ) = payable(address(vault)).call{value: 1000e18}("");
+        (bool success,) = payable(address(vault)).call{value: 1000e18}("");
         require(success, "Vault funding failed");
         vm.stopPrank();
     }
@@ -64,9 +64,7 @@ contract RebaseTokenTest is Test {
         assertEq(ethBalanceBeforeRedeem + depositedAmount, user.balance);
     }
 
-    function testRedeemAfterTimePassed(
-        uint256 amount
-    ) external deposit(amount) {
+    function testRedeemAfterTimePassed(uint256 amount) external deposit(amount) {
         // Wait for interest to accrue
         vm.warp(block.timestamp + 1 days);
 
@@ -144,8 +142,7 @@ contract RebaseTokenTest is Test {
 
         // check that the principle amount is the same after some time has passed
         vm.warp(block.timestamp + 1 days);
-        uint256 principleAmountAfterWarp = rebaseToken
-            .getPrincipalBalanceOfUser(user);
+        uint256 principleAmountAfterWarp = rebaseToken.getPrincipalBalanceOfUser(user);
         assertEq(principleAmountAfterWarp, amount);
     }
 
@@ -159,19 +156,9 @@ contract RebaseTokenTest is Test {
 
     function testInterestRateCanOnlyDecrease(uint256 newInterestRate) public {
         uint256 initialInterestRate = rebaseToken.getCurrentInterestRate();
-        newInterestRate = bound(
-            newInterestRate,
-            initialInterestRate + 1,
-            type(uint96).max
-        );
+        newInterestRate = bound(newInterestRate, initialInterestRate + 1, type(uint96).max);
         vm.prank(owner);
-        vm.expectPartialRevert(
-            bytes4(
-                RebaseToken
-                    .RebaseToken__NewInterestRateCannotBeEqualOrHigher
-                    .selector
-            )
-        );
+        vm.expectPartialRevert(bytes4(RebaseToken.RebaseToken__NewInterestRateCannotBeEqualOrHigher.selector));
         rebaseToken.setInterestRate(newInterestRate);
         assertEq(rebaseToken.getCurrentInterestRate(), initialInterestRate);
     }
