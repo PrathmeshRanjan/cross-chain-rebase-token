@@ -119,8 +119,9 @@ contract RebaseTokenTest is Test {
     function testCannotCallMint() public {
         // Deposit funds
         vm.startPrank(user);
+        uint256 senderInterestRate = rebaseToken.getUserInterestRate(user);
         vm.expectRevert();
-        rebaseToken.mint(user, 1e5);
+        rebaseToken.mint(user, 1e5, senderInterestRate);
         vm.stopPrank();
     }
 
