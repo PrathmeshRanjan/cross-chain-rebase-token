@@ -604,7 +604,7 @@ anvil --help
 cast --help
 ```
 
-###Test Setup
+### Test Setup
 
 The test suite uses Foundry's testing framework with:
 
