@@ -5,7 +5,6 @@ pragma solidity ^0.8.24;
 import {RebaseToken} from "../src/RebaseToken.sol";
 import {Vault} from "../src/Vault.sol";
 import {RebaseTokenPool} from "../src/RebaseTokenPool.sol";
-// import {IRebaseToken} from "../src/interfaces/IRebaseToken.sol";
 
 import {IERC20} from "@ccip/contracts/src/v0.8/vendor/openzeppelin-solidity/v4.8.3/contracts/token/ERC20/IERC20.sol";
 
@@ -27,9 +26,6 @@ contract CrossChainTest is Test {
 
     RebaseTokenPool ethRebaseTokenPool;
     RebaseTokenPool arbRebaseTokenPool;
-
-    // IRebaseToken iEthRebaseToken;
-    // IRebaseToken iArbRebaseToken;
 
     CCIPLocalSimulatorFork ccipLocalSimulatorFork;
 
