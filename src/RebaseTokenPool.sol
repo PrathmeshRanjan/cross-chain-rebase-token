@@ -32,7 +32,7 @@ contract RebaseTokenPool is TokenPool {
         _validateLockOrBurn(lockOrBurnIn);
         // Burn the tokens on the source chain. This returns their userAccumulatedInterest before the tokens were burned (in case all tokens were burned, we don't want to send 0 cross-chain)
         uint256 userInterestRate = RebaseToken(address(i_token)).getUserInterestRate(lockOrBurnIn.originalSender);
-        //uint256 currentInterestRate = IRebaseToken(address(i_token)).getInterestRate();
+
         RebaseToken(address(i_token)).burn(address(this), lockOrBurnIn.amount);
 
         // encode a function call to pass the caller's info to the destination pool and update it

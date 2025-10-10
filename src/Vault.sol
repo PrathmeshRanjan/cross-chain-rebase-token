@@ -31,6 +31,10 @@ contract Vault {
      */
     function deposit() external payable {
         uint256 userInterestRate = i_rebaseToken.getUserInterestRate(msg.sender);
+        // If user is depositing for the first time (interest rate is 0), set it to the current global rate
+        if (userInterestRate == 0) {
+            userInterestRate = i_rebaseToken.getCurrentInterestRate();
+        }
         i_rebaseToken.mint(msg.sender, msg.value, userInterestRate);
         emit Deposit(msg.sender, msg.value);
     }

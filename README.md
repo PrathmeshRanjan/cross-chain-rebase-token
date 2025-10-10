@@ -643,13 +643,12 @@ The test suite uses Foundry's testing framework with:
 **Testnet Deployments** (Update after deployment):
 
 -   Ethereum Sepolia:
-    -   RebaseToken: `TBD`
-    -   Vault: `TBD`
-    -   RebaseTokenPool: `TBD`
+    -   RebaseToken: `0x2f9b743e20A0a1a8bA2217262bc221ceD168967b`
+    -   Vault: `0xB6d58c290d69bC873c190eEBA4876178db585675`
+    -   RebaseTokenPool: `0x8A248ccddeF9656569a9ecAAf33877ea371f6368`
 -   Polygon Mumbai:
-    -   RebaseToken: `TBD`
-    -   Vault: `TBD`
-    -   RebaseTokenPool: `TBD`
+    -   RebaseToken: `0xBE9417063674e7e86F79FFb0d6769f112e7699D6`
+    -   RebaseTokenPool: `0x80911fE0b9b148282CB4751c59f729fA973cd036`
 
 ## Dependencies
 
