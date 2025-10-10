@@ -14,6 +14,10 @@ This project implements a rebase token system where users can deposit ETH into a
 -   **Decreasing Rate Model**: Global interest rate can only decrease, rewarding early depositors
 -   **Burn & Mint Mechanism**: Uses burn/mint token pool for cross-chain operations
 
+## Test Coverage (Scripts are not tested)
+
+![Test Coverage](./public/1.png)
+
 ## Architecture
 
 ### Core Contracts
