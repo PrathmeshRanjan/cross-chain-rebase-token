@@ -604,17 +604,7 @@ anvil --help
 cast --help
 ```
 
-## Testing
-
-The project includes comprehensive tests for:
-
--   **testDepositLinear**: Verifies linear interest accrual over time
--   **testRedeem**: Tests basic redemption functionality
--   **testRedeemAfterTimePassed**: Validates redemption with accrued interest
--   **testTransfer**: Tests token transfers between users with interest rate preservation
--   **testInterestRateCanOnlyDecrease**: Ensures interest rates can only decrease
-
-### Test Setup
+###Test Setup
 
 The test suite uses Foundry's testing framework with:
 
@@ -622,25 +612,6 @@ The test suite uses Foundry's testing framework with:
 -   Time manipulation with `vm.warp()` for interest accrual testing
 -   Pranking for access control testing
 -   Bounded inputs for realistic test scenarios
-
-## Security Considerations
-
-### Known Limitations
-
-1. **Vault Insolvency Risk**: Current implementation doesn't generate yield on deposits
-2. **Rate Limit Configuration**: Custom pools must properly configure rate limits
-3. **Cross-Chain Validation**: Always validate source pool addresses on destination
-4. **RMN Curse Status**: Check Risk Management Network status before operations
-5. **Interest Rate Preservation**: Ensure `userInterestRate` is correctly encoded/decoded
-
-### Best Practices
-
--   Always call `_validateLockOrBurn()` before burning tokens
--   Always call `_validateReleaseOrMint()` before minting tokens
--   Verify `sourcePoolAddress` matches expected pool on destination chain
--   Implement proper access controls for admin functions
--   Use rate limiting to prevent abuse
--   Test thoroughly with various chain configurations
 
 ## Contract Addresses
 
